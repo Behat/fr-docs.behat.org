@@ -11,66 +11,69 @@ offre la possibilité d'abstraire les détails d'implémentation de vos tests
 de comportement.
 
 Gherkin a deux objectifs : servir de documentation fonctionnelle pour votre 
-projet, et servir de tests automatisés. Behat offre même un bonus : il guide le 
+projet, et servir de tests automatisés. Behat offre même un bonus : il guide le
 développeur en utilisant un vrai langage, humain, et lui dit ce que son code 
 doit produire.
 
 Si vous découvrez Behat, allez faire un tour sur le :doc:`/quick_intro`
 d'abord, puis revenez ici pour en découvrir plus sur Gherkin.
 
-Gherkin Syntax
+La Syntaxe Gherkin
 --------------
 
-Like YAML or Python, Gherkin is a line-oriented language that uses indentation
-to define structure. Line endings terminate statements (called steps) and either
-spaces or tabs may be used for indentation. (We suggest you use spaces for
-portability.) Finally, most lines in Gherkin start with a special keyword:
+Comme c'est le cas pour YAML ou Python, Gherkin est une language "orienté
+ligne", c'est-à-dire qu'il utilise les indentations pour définir sa structure.
+Les fins de lignes terminent des instructions (appelées "étapes") ; les
+espaces, comme les tabulations, peuvent être utilisée pour l'indentation. (Nous
+suggérons d'utiliser les espaces, pour des raisons de portabilité). Pour finir,
+la plupart des lignes écrite en Gherkin comment par un mot-clef spécial :
 
 .. code-block:: gherkin
 
-    Feature: Some terse yet descriptive text of what is desired
-      In order to realize a named business value
-      As an explicit system actor
-      I want to gain some beneficial outcome which furthers the goal
+    Fonctionnalité: Une description de ce qui est attendu
+      Afin de réaliser une action métier (domaine fonctionnel)
+      En tant qu'acteur explicite du domaine fonctionnel
+      Je dois tirer un bénéfice de cette fonctionnalité
 
-      Scenario: Some determinable business situation
-        Given some precondition
-          And some other precondition
-         When some action by the actor
-          And some other action
-          And yet another action
-         Then some testable outcome is achieved
-          And something else we can check happens too
+      Scénario: Une description du scénario
+          Etant donné que [un contexte]
+          Et [plus d'informations sur le contexte]
+          Quand [un événement]
+          Et [un autre événement]
+          Alors [résultat attendu]
+          Et [un autre résultat attendu]
+          Mais [un autre résultat attendu]
 
-      Scenario: A different situation
+      Scenario: Une situation différente
           ...
 
-The parser divides the input into features, scenarios and steps. Let's walk
-through the above example:
+L'interpréteur découpe les informations en Fonctionnalités, Scénarios puis
+Étapes. Examinons plus en détail l'exemple ci dessus :
 
-1. ``Feature: Some terse yet descriptive text of what is desired`` starts
-   the feature and gives it a title. Learn more about features in the
-   "`Features`_" section.
+1. ``Fonctionnalité: Une description de ce qui est attendu`` démarre la
+   fonctionnalité et lui donne un titre. Découvrez en plus sur les
+   Fonctionnalités dans la section "`Features`_".
 
-2. Behat does not parse the next 3 lines of text. (In order to... As an...
-   I want to...). These lines simply provide context to the people
-   reading your feature, and describe the business value derived from the
-   inclusion of the feature in your software.
+2. Behat ne va pas interpréter les 3 lignes suivantes (Afin de... En tant
+   que... Je dois...). Ces lignes ne servent qu'à fournir un contexte
+   fonctionnel/métier lié à votre fonctionnalité, dans votre application.
 
-3. ``Scenario: Some determinable business situation`` starts the scenario,
-   and contains a description of the scenario. Learn more about scenarios in
-   the "`Scenarios`_" section.
+3. ``Scénario: Une description du scénario`` démarre le scénario, et contient
+   une description du scénario. Découvrez en plus sur les
+   Fonctionnalités dans la section "`Scenarios`_".
 
-4. The next 7 lines are the scenario steps, each of which is matched to
-   a regular expression defined elsewhere. Learn more about steps in the
-   "`Steps`_" section.
+4. Les 7 lignes suivantes sont les Étapes du Scénario, chacune matchant une
+   expression régulière définie ailleurs. Découvrez en plus sur les
+   Étapes dans la section "`Steps`_".
 
-5. ``Scenario: A different situation`` starts the next scenario, and so on.
+5. ``Scenario: Une situation différente`` démarre le scénario suivant, puis ça
+   continue....
 
-When you're executing the feature, the trailing portion of each step (after
-keywords like ``Given``, ``And``, ``When``, etc) is matched to
-a regular expression, which executes a PHP callback function. You can read more
-about steps matching and execution in :doc:`/guides/2.definitions`.
+Quand vous exécutez la fonctionnalité, l'expression contenue dans chaque Étape
+(après les mot-clefs comment ``Etant donné``, ``Et``, ``Quand``, etc.) est liée
+à une expression régulière qui va la lier à une fonction PHP. Vous pouvez en
+savoir plus sur le matching d'expression et leur exécution dans
+:doc:`/guides/2.definitions`.
 
 Features
 --------
