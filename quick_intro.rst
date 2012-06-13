@@ -217,7 +217,7 @@ attendu* - peut être étendue en ajoutant les mots clefs ``Et`` et ``Mais``:
 
 .. code-block:: gherkin
 
-    Scénario: Some description of the scenario
+    Scénario: Une description du scénario
       Etant donné que [un contexte]
       Et [plus d'informations sur le contexte]
       Quand [un événement]
