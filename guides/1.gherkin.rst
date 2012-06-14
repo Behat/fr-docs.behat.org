@@ -113,32 +113,34 @@ humains. Voici un exemple :
 En plus des `scenarios`_ de base, une fonctionnalité peut contenir des
  `scenario outlines`_ et des `backgrounds`_.
 
-Scenarios
+Scénarios
 ---------
 
+Le Scénario est une des structures à la base de Gherkin. Chaque schénario
+démarre avec le mot-clef ``Scénario`` (ou sa traduction), suivi par un titre de
+scénario optionnel. Chaque fonctionnalité peut être composée de un ou de
+plusieurs scénarios, et chaque scénario consiste en une ou plusieurs
 Scenario is one of the core Gherkin structures. Every scenario starts with
-the ``Scenario:`` keyword (or localized one), followed by an optional scenario
-title. Each feature can have one or more scenarios, and every scenario consists
-of one or more `steps`_.
+`steps`_.
 
-The following scenarios each have 3 steps:
+Les scénarios suivants sont composés de 3 étapes :
 
 .. code-block:: gherkin
 
-  Scenario: Wilson posts to his own blog
-    Given I am logged in as Wilson
-    When I try to post to "Expensive Therapy"
-    Then I should see "Your article was published."
+  Scenario: Wilson publie sur son propre blog
+    Etant donné que je suis connecté en tant que Wilson
+    Quand je tente de publier pour "Le Blog de Wilson"
+    Alors je dois voir "Votre article a été publié"
 
-  Scenario: Wilson fails to post to somebody else's blog
-    Given I am logged in as Wilson
-    When I try to post to "Greg's anti-tax rants"
-    Then I should see "Hey! That's not your blog!"
+  Scenario: Wilson échoue lorsqu'il tente de publier sur un autre blog
+    Etant donné que je suis connecté en tant que Wilson
+    Quand je tente de publier pour "Le Blog de Greg"
+    Alors je dois voir "Hé! Ce n'est pas votre blog !"
 
-  Scenario: Greg posts to a client's blog
-    Given I am logged in as Greg
-    When I try to post to "Expensive Therapy"
-    Then I should see "Your article was published."
+  Scenario: Greg publie sur son propre blog
+    Etant donné que je suis connecté en tant que Greg
+    Quand je tente de publier pour "Le Blog de Greg"
+    Alors je dois voir "Votre article a été publié"
 
 Scenario Outlines
 -----------------
