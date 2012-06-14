@@ -111,7 +111,7 @@ humains. Voici un exemple :
         Alors je devrai recevoir un café
 
 En plus des `scénarios`_ de base, une fonctionnalité peut contenir des
- `Plans de scénario`_ et des `toiles de fond`_.
+ `Plans de scénario`_ et des `Contextes`_.
 
 Scénarios
 ---------
@@ -141,7 +141,7 @@ Les scénarios suivants sont composés de 3 étapes :
     Quand je tente de publier pour "Le Blog de Greg"
     Alors je dois voir "Votre article a été publié"
 
-Plans de scénario (avec exemples)
+Plans de scénario
 -----------------
 
 Copier-coller des scénarios pour utiliser différentes valeurs peut être vite
@@ -201,7 +201,7 @@ ce que la fin du tableau d'``Exemples`` soit atteinte.
     lui-même, mais doivent s'occuper uniquement de la valeur qui remplacera le
     marqueur.
 
-DOnc, lorsqu'on exécute la première ligne de notre exemple :
+Lorsqu'on exécute la première ligne de notre exemple :
 
 .. code-block:: gherkin
 
@@ -227,13 +227,14 @@ Le scénario qui est en train de s'exécuter alors est :
       # <restant> est remplacé par 7 :
       Alors je dois avoir <restant> concombres
 
-Backgrounds
+Contextes
 -----------
 
-Backgrounds allows you to add some context to all scenarios in a single
-feature. A Background is like an untitled scenario, containing a number of
-steps. The difference is when it is run: the background is run before each of
-your scenarios, but after your ``BeforeScenario`` hooks (:doc:`/guides/3.hooks`).
+Les Contextes vous permettent d'ajouter une toile de fond commune à l'ensemble 
+des scénarios d'une fonctionnalité en une seule fois. Un Contexte est comme 
+un Scénario sans titre, et contient plusieurs étapes. La différence 
+fondamentale c'est que le Contexte sera appelé avant chacun de vos scénarios 
+(mais juste après vos Hoosk ``BeforeScenario`` (:doc:`/guides/3.hooks`)).
 
 .. code-block:: gherkin
 
