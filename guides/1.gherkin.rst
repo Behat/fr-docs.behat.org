@@ -44,7 +44,7 @@ la plupart des lignes écrite en Gherkin comment par un mot-clef spécial :
           Et [un autre résultat attendu]
           Mais [un autre résultat attendu]
 
-      Scenario: Une situation différente
+      Scénario: Une situation différente
           ...
 
 L'interpréteur découpe les informations en Fonctionnalités, Scénarios puis
@@ -52,7 +52,7 @@ L'interpréteur découpe les informations en Fonctionnalités, Scénarios puis
 
 1. ``Fonctionnalité: Une description de ce qui est attendu`` démarre la
    fonctionnalité et lui donne un titre. Découvrez en plus sur les
-   Fonctionnalités dans la section "`Features`_".
+   Fonctionnalités dans la section "`Fonctionnalités`_".
 
 2. Behat ne va pas interpréter les 3 lignes suivantes (Afin de... En tant
    que... Je dois...). Ces lignes ne servent qu'à fournir un contexte
@@ -60,13 +60,13 @@ L'interpréteur découpe les informations en Fonctionnalités, Scénarios puis
 
 3. ``Scénario: Une description du scénario`` démarre le scénario, et contient
    une description du scénario. Découvrez en plus sur les
-   Fonctionnalités dans la section "`Scenarios`_".
+   Fonctionnalités dans la section "`Scénarios`_".
 
 4. Les 7 lignes suivantes sont les Étapes du Scénario, chacune matchant une
    expression régulière définie ailleurs. Découvrez en plus sur les
-   Étapes dans la section "`Steps`_".
+   Étapes dans la section "`Étapes`_".
 
-5. ``Scenario: Une situation différente`` démarre le scénario suivant, puis ça
+5. ``Scénario: Une situation différente`` démarre le scénario suivant, puis ça
    continue....
 
 Quand vous exécutez la fonctionnalité, l'expression contenue dans chaque Étape
@@ -110,8 +110,8 @@ humains. Voici un exemple :
         Quand j'appuie sur le bouton de la machine
         Alors je devrai recevoir un café
 
-En plus des `scenarios`_ de base, une fonctionnalité peut contenir des
- `scenario outlines`_ et des `backgrounds`_.
+En plus des `scénarios`_ de base, une fonctionnalité peut contenir des
+ `Plans de scénario`_ et des `toiles de fond`_.
 
 Scénarios
 ---------
@@ -120,8 +120,7 @@ Le Scénario est une des structures à la base de Gherkin. Chaque schénario
 démarre avec le mot-clef ``Scénario`` (ou sa traduction), suivi par un titre de
 scénario optionnel. Chaque fonctionnalité peut être composée de un ou de
 plusieurs scénarios, et chaque scénario consiste en une ou plusieurs
-Scenario is one of the core Gherkin structures. Every scenario starts with
-`steps`_.
+`étapes`_.
 
 Les scénarios suivants sont composés de 3 étapes :
 
@@ -142,89 +141,91 @@ Les scénarios suivants sont composés de 3 étapes :
     Quand je tente de publier pour "Le Blog de Greg"
     Alors je dois voir "Votre article a été publié"
 
-Scenario Outlines
+Plans de scénario (avec exemples)
 -----------------
 
-Copying and pasting scenarios to use different values can quickly become
-tedious and repetitive:
+Copier-coller des scénarios pour utiliser différentes valeurs peut être vite
+fastidieux et répétitif :
 
 .. code-block:: gherkin
 
-    Scenario: Eat 5 out of 12
-      Given there are 12 cucumbers
-      When I eat 5 cucumbers
-      Then I should have 7 cucumbers
+    Scenario: En manger 5 sur 12
+      Etant donné qu'il y a 12 concombres
+      Quand je mange 5 concombres
+      Alors je dois avoir 7 concombres
 
-    Scenario: Eat 5 out of 20
-      Given there are 20 cucumbers
-      When I eat 5 cucumbers
-      Then I should have 15 cucumbers
+    Scenario: En manger 5 sur 20
+      Etant donné qu'il y a 20 concombres
+      Quand je mange 5 concombres
+      Alors je dois avoir 15 concombres
 
-Scenario Outlines allow us to more concisely express these examples through the
-use of a template with placeholders:
-
-.. code-block:: gherkin
-
-    Scenario Outline: Eating
-      Given there are <start> cucumbers
-      When I eat <eat> cucumbers
-      Then I should have <left> cucumbers
-
-      Examples:
-        | start | eat | left |
-        |  12   |  5  |  7   |
-        |  20   |  5  |  15  |
-
-The Scenario outline steps provide a template which is never directly run. A
-Scenario Outline is run once for each row in the Examples section beneath it
-(not counting the first row of column headers).
-
-The Scenario Outline uses placeholders, which are contained within
-``< >`` in the Scenario Outline's steps. For example:
+Les Plans de scénarios vous permettent d'exprimer ces exemples en utilisant
+un tableau juste derrière votre scénario :
 
 .. code-block:: gherkin
 
-    Given <I'm a placeholder and I'm ok>
+    Plan de scénario: Manger
+      Etant donné qu'il y a <initial> concombres
+      Quand je mange <mangés> concombres
+      Alors je dois avoir <restant> concombres
 
-Think of a placeholder like a variable. It is replaced with a real value from
-the ``Examples:`` table row, where the text between the placeholder angle
-brackets matches that of the table column header. The value substituted for
-the placeholder changes with each subsequent run of the Scenario Outline,
-until the end of the ``Examples`` table is reached.
+      Exemples:
+        | initial | mangés | restant |
+        |  12     |  5     |  7   |
+        |  20     |  5     |  15  |
+
+Les Plans de scénario fournissent un modèle qui n'est jamais exécuté d'un coup.
+Un Plan de scénario est en réalité exécuté pour chacune des lignes qui composent
+la section d'Exemples qui le suit (en excluant bien entendu la première ligne 
+d'en-tête).
+
+Le Plan de scénario utilise des marqueurs, qui sont contenus à l'intérieur des
+``< >`` dans les étapes. Par exemple :
+
+.. code-block:: gherkin
+
+    Etant donné <Je suis un marqueur valide>
+
+Représentez-vous un marqueur comme une variable. Il sera remplacé par une 
+valeur bien réelle issue du tableau d'``Exemples:``. La valeur substituée au
+marqueur change à chaque boucle dans l'exécution du Scénario attendu, jusqu'à
+ce que la fin du tableau d'``Exemples`` soit atteinte.
 
 .. tip::
 
-    You can also use placeholders in `Multiline Arguments`_.
+    Vous pouvez également utiliser des marqueurs dans des `Arguments multi-lignes`_.
 
 .. note::
 
-    Your step definitions will never have to match the placeholder text itself,
-    but rather the values replacing the placeholder.
+    Vos définitions d'étapes ne doivent jamais matcher le contenu du marqueyr
+    lui-même, mais doivent s'occuper uniquement de la valeur qui remplacera le
+    marqueur.
 
-So when running the first row of our example:
-
-.. code-block:: gherkin
-
-    Scenario Outline: controlling order
-      Given there are <start> cucumbers
-      When I eat <eat> cucumbers
-      Then I should have <left> cucumbers
-
-      Examples:
-        | start | eat | left |
-        |  12   |  5  |  7   |
-
-The scenario that is actually run is:
+DOnc, lorsqu'on exécute la première ligne de notre exemple :
 
 .. code-block:: gherkin
 
-    Scenario Outline: controlling order
-      # <start> replaced with 12:
-      Given there are 12 cucumbers
-      # <eat> replaced with 5:
-      When I eat 5 cucumbers
-      # <left> replaced with 7:
-      Then I should have 7 cucumbers
+    Plan de scénario: Manger
+      Etant donné qu'il y a <initial> concombres
+      Quand je mange <mangés> concombres
+      Alors je dois avoir <restant> concombres
+
+      Exemples:
+        | initial | mangés | restant |
+        |  12     |  5     |  7   |
+        |  20     |  5     |  15  |
+
+Le scénario qui est en train de s'exécuter alors est :
+
+.. code-block:: gherkin
+
+    Plan de scénario: Manger
+      # <initial> est remplacé par 12 :
+      Etant donné qu'il y a <initial> concombres
+      # <mangés> est remplacé par 5 :
+      Quand je mange <mangés> concombres
+      # <restant> est remplacé par 7 :
+      Alors je dois avoir <restant> concombres
 
 Backgrounds
 -----------
