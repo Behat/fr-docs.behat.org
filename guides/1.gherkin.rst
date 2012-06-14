@@ -75,36 +75,43 @@ Quand vous exécutez la fonctionnalité, l'expression contenue dans chaque Étap
 savoir plus sur le matching d'expression et leur exécution dans
 :doc:`/guides/2.definitions`.
 
-Features
+Fonctionnalités
 --------
 
-Every ``*.feature`` file conventionally consists of a single feature. Lines
-starting with the keyword ``Feature:`` (or its localized equivalent) followed
-by three indented lines starts a feature. A feature usually contains a list of
-scenarios. You can write whatever you want up until the first scenario, which
-starts with ``Scenario:`` (or localized equivalent) on a new line. You can use
-`tags`_ to group features and scenarios together, independent of your file and
-directory structure.
+Chaque fichier ``*.feature`` ne doit contenir qu'une seule fonctionnalité. Le
+fichier doit commencer par le mot-clef ``Fonctionnalité`` (ou sa traduction),
+suivi par trois lignes indentées. Une fonctionnalité contient généralement une
+liste de Scénarios. Vous pouvez écrire ce que vous voulez au dessus du premier
+scénario (ce ne sera pas interpreté), qui démarrera avec le mot-clef
+``Scénario`` (ou sa traduction). Vous pouvez enfin utiliser des `tags`_ pour
+regrouper les fonctionnalités et les scénarios, indépendamment du fichier ou
+du dossier dans lesquels ils sont situés.
 
-Every scenario consists of a list of `steps`_, which must start with one of the
-keywords ``Given``, ``When``, ``Then``, ``But`` or ``And`` (or localized one).
-Behat treats them all the same, but you shouldn't. Here is an example:
+.. note::
+
+    Comme le Français n'est pas la langue par défaut de Behat, n'oubliez pas
+    d'ajouter le commentaire ``# language: fr`` en haut de votre Fonctionnalité.
+
+Chaque Scénario contient une liste d'`Étapes`, qui doivent débuter par le
+mot-clef ``Etant donné``, ``Quand``, ``Alors``, ``Et`` ou ``Mais``. Behat ne
+fait aucune différence entre ces mot-clefs, mais ils sont important pour les
+humains. Voici un exemple :
 
 .. code-block:: gherkin
 
-    Feature: Serve coffee
-      In order to earn money
-      Customers should be able to
-      buy coffee at all times
+    Fonctionnalité: Servir du café
+      Afin de gagner de l'argent
+      Les clients doivent être capables
+      d'acheter du café à toutes heures
 
-      Scenario: Buy last coffee
-        Given there are 1 coffees left in the machine
-        And I have deposited 1 dollar
-        When I press the coffee button
-        Then I should be served a coffee
+      Scénario: Acheter le dernier café
+        Etant donné qu'il reste 1 café dans la machine
+        Et que j'ai mis 1 dollar
+        Quand j'appuie sur le bouton de la machine
+        Alors je devrai recevoir un café
 
-In addition to basic `scenarios`_, feature may contain `scenario outlines`_
-and `backgrounds`_.
+En plus des `scenarios`_ de base, une fonctionnalité peut contenir des
+ `scenario outlines`_ et des `backgrounds`_.
 
 Scenarios
 ---------
