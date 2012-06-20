@@ -259,16 +259,17 @@ fondamentale c'est que le Contexte sera appelé avant chacun de vos scénarios
 Steps
 -----
 
-`Features`_ consist of steps, also known as `Givens`_, `Whens`_ and `Thens`_.
+Les `Fonctionnalités`_ sont composées d'étapes, c'est-à-dire `Etant donné`_,
+`Quand`_ and `Alors`_.
 
-Behat doesn't technically distinguish between these three kind of steps.
-However, we strongly recommend that you do! These words have been carefully
-selected for their purpose, and you should know what the purpose is to get into
-the BDD mindset.
+Behat ne distingue pas techniquement ces trois types d'étapes. Cependant, nous
+vous recommandons très fortement de le faire vous ! Ces mot-clefs ont été
+choisis avec soin parce qu'ils répondent à leur objectif, objectif que vous
+devez garder en tête pour faire du Développement Piloté par le Comportement.
 
-Robert C. Martin has written a `great post <http://blog.objectmentor.com/articles/2008/11/27/the-truth-about-bdd>`_
-about BDD's Given-When-Then concept where he thinks of them as a finite state
-machine.
+Robert C. Martin a écrit un `bon billet <http://blog.objectmentor.com/articles/2008/11/27/the-truth-about-bdd>`_
+sur les concepts "Etant donné - Quand - Alors" du BDD, dans lequel il les pense
+comme un Automate fini (également désigné en Anglais par FSM, ou Finite State Machine).
 
 Givens
 ~~~~~~
