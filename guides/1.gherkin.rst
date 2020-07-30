@@ -238,23 +238,23 @@ fondamentale c'est que le Contexte sera appelé avant chacun de vos scénarios
 
 .. code-block:: gherkin
 
-    Feature: Multiple site support
+    Fonctionnalité: Support multi-sites
 
-      Background:
-        Given a global administrator named "Greg"
-        And a blog named "Greg's anti-tax rants"
-        And a customer named "Wilson"
-        And a blog named "Expensive Therapy" owned by "Wilson"
+      Contexte:
+        Etant donné un administrateur global nommé "Greg"
+        Et un blog nommé "Greg's anti-tax rants"
+        Et un client nommé "Wilson"
+        Et un blog nommé "Expensive Therapy" détenu par "Wilson"
 
-      Scenario: Wilson posts to his own blog
-        Given I am logged in as Wilson
-        When I try to post to "Expensive Therapy"
-        Then I should see "Your article was published."
+      Scénario: Wilson poste sur son propre blog
+        Etant donné que je suis logué en tant que Wilson
+        Lorsque j'essaie de poster sur "Expensive Therapy"
+        Alors je dois voir "Your article was published."
 
-      Scenario: Greg posts to a client's blog
-        Given I am logged in as Greg
-        When I try to post to "Expensive Therapy"
-        Then I should see "Your article was published."
+      Scénario: Greg écrit sur le blog d'un client
+        Etant donné que je suis logué en tant que Greg
+        Lorsque j'essaie d'écrire sur "Expensive Therapy"
+        Alors je devrais voir "Your article was published."
 
 Steps
 -----
@@ -367,33 +367,32 @@ interface, message, command output) and not something deeply buried inside it
     by the output of your system in a web browser, on the command-line or an
     email message.
 
-And, But
+Et, Mais
 ~~~~~~~~
 
-If you have several Given, When or Then steps you can write:
+Si vous avez plusieurs étapes "Etant donné", "Lorsque" ou "Alors" vous pouvez écrire :
 
 .. code-block:: gherkin
 
-    Scenario: Multiple Givens
-      Given one thing
-      Given an other thing
-      Given yet an other thing
-      When I open my eyes
-      Then I see something
-      Then I don't see something else
+    Scénario: Plusieurs étant donné
+      Etant donné quelque chose
+      Etant donné quelque chose d'autre
+      Quand j'ouvre mes yeux
+      Alors je vois quelque chose
+      Alors je vois quelque chose d'autre
 
-Or you can use **And** or **But** steps, allowing your Scenario to read more
-fluently:
+Ou vous pouvez utiliser les étapes **Et** ou **Mais**, ce qui rend votre Scénario
+plus facile à lire :
 
 .. code-block:: gherkin
 
-    Scenario: Multiple Givens
-      Given one thing
-      And an other thing
-      And yet an other thing
-      When I open my eyes
-      Then I see something
-      But I don't see something else
+    Scénario: Plusieurs étant donné
+      Etant donné que quelque chose
+      Soit qu'autre chose
+      Et qu'encore autre chose
+      Lorsque j'ouvre mes yeux
+      Alors je vois quelque chose
+      Mais je ne vois rien d'autre
 
 If you prefer, you can indent scenario steps in a more *programmatic* way, much
 in the same way your actual code is indented to provide visual context:
